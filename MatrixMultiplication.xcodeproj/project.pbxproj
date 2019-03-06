@@ -13,6 +13,7 @@
 		90B2A85C2230552C00FAA212 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90B2A85B2230552C00FAA212 /* Assets.xcassets */; };
 		90B2A85F2230552C00FAA212 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90B2A85D2230552C00FAA212 /* LaunchScreen.storyboard */; };
 		90B2A86A2230552D00FAA212 /* MatrixMultiplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B2A8692230552D00FAA212 /* MatrixMultiplicationTests.swift */; };
+		90B2A875223056D500FAA212 /* MatrixCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B2A874223056D500FAA212 /* MatrixCalculator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		90B2A8652230552D00FAA212 /* MatrixMultiplicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MatrixMultiplicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		90B2A8692230552D00FAA212 /* MatrixMultiplicationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixMultiplicationTests.swift; sourceTree = "<group>"; };
 		90B2A86B2230552D00FAA212 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90B2A874223056D500FAA212 /* MatrixCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixCalculator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				90B2A85B2230552C00FAA212 /* Assets.xcassets */,
 				90B2A85D2230552C00FAA212 /* LaunchScreen.storyboard */,
 				90B2A8602230552C00FAA212 /* Info.plist */,
+				90B2A874223056D500FAA212 /* MatrixCalculator.swift */,
 			);
 			path = MatrixMultiplication;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90B2A8572230552700FAA212 /* ViewController.swift in Sources */,
+				90B2A875223056D500FAA212 /* MatrixCalculator.swift in Sources */,
 				90B2A8552230552700FAA212 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
