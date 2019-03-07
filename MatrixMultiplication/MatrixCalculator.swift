@@ -12,7 +12,7 @@ typealias Matrix = [[Int]]
 
 class MatrixCalculator {
 
-    func multiplyMatrices(matrix1: Matrix, matrix2: Matrix, completion: @escaping ((Matrix?) -> Void)) {
+    func multiplyMatrices(matrix1: Matrix, matrix2: Matrix, completion: @escaping ((Matrix) -> Void)) {
         guard matrix1.count == matrix2.count else {
             return
         }
@@ -36,7 +36,7 @@ class MatrixCalculator {
         }
     }
     
-    func parallelMultiplyMatrices(matrix1: Matrix, matrix2: Matrix, completion: @escaping ((Matrix?) -> Void)) {
+    func parallelMultiplyMatrices(matrix1: Matrix, matrix2: Matrix, completion: @escaping ((Matrix) -> Void)) {
         guard matrix1.count == matrix2.count else {
             return
         }
@@ -46,8 +46,12 @@ class MatrixCalculator {
                                              count: matrixSize)
         let resultMatrixQueue = DispatchQueue(label: "com.kassergey.matrixCalculator.resultMatrix")
         let dispatchGroup = DispatchGroup()
-        let threads = 5
-        let partialMatrixSize = Int(matrixSize/threads)
+        var threads = 5
+        var partialMatrixSize = Int(matrixSize/threads)
+        if partialMatrixSize==0 {
+            partialMatrixSize = matrixSize
+            threads = 1
+        }
         for z in 0..<threads {
             DispatchQueue.global(qos: .userInteractive).async(group: dispatchGroup) {
                 for i in (z*partialMatrixSize)..<((z+1)*partialMatrixSize) {

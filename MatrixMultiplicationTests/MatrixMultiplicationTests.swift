@@ -58,5 +58,27 @@ class MatrixMultiplicationTests: XCTestCase {
             })
         }
     }
+    
+    func testResultParallel() {
+        let matrix1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        let matrix2 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        let expectedMatrix = [[30, 36, 42], [66, 81, 96], [102, 126, 150]]
+        let mc = MatrixCalculator()
+        mc.parallelMultiplyMatrices(matrix1: matrix1,
+                                    matrix2: matrix2, completion: { (resultMatrix) in
+                                        XCTAssertEqual(resultMatrix, expectedMatrix)
+        })
+    }
+    
+    func testResult() {
+        let matrix1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        let matrix2 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        let expectedMatrix = [[30, 36, 42], [66, 81, 96], [102, 126, 150]]
+        let mc = MatrixCalculator()
+        mc.multiplyMatrices(matrix1: matrix1,
+                            matrix2: matrix2, completion: { (resultMatrix) in
+                                XCTAssertEqual(resultMatrix, expectedMatrix)
+        })
+    }
 
 }
