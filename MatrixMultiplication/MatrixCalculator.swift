@@ -11,7 +11,6 @@ import Foundation
 typealias Matrix = [[Int]]
 
 class MatrixCalculator {
-    let dispatchGroup = DispatchGroup()
 
     func multiplyMatrices(matrix1: Matrix, matrix2: Matrix, completion: @escaping ((Matrix?) -> Void)) {
         guard matrix1.count == matrix2.count else {
@@ -31,7 +30,9 @@ class MatrixCalculator {
                     resultMatrix[i][j] = value
                 }
             }
-            completion(resultMatrix)
+            DispatchQueue.main.async {
+                completion(resultMatrix)
+            }
         }
     }
     
@@ -43,21 +44,27 @@ class MatrixCalculator {
         var resultMatrix = Array<Array<Int>>(repeating: Array<Int>(repeating: 0,
                                                                    count: matrixSize),
                                              count: matrixSize)
-        let resultMatrixQueue = DispatchQueue(label: "com.kassergey.matrixCalculator.resultMatrix", attributes: .concurrent)
-        for i in 0..<matrixSize {
-            DispatchQueue.global(qos: .userInteractive).async {
-                let local_i = i
-                for j in 0..<matrixSize {
-                    var value = 0
-                    for k in 0..<matrixSize {
-                        value += matrix1[local_i][k] * matrix2[k][j]
+        let resultMatrixQueue = DispatchQueue(label: "com.kassergey.matrixCalculator.resultMatrix")
+        let dispatchGroup = DispatchGroup()
+        let threads = 5
+        let partialMatrixSize = Int(matrixSize/threads)
+        for z in 0..<threads {
+            DispatchQueue.global(qos: .userInteractive).async(group: dispatchGroup) {
+                for i in (z*partialMatrixSize)..<((z+1)*partialMatrixSize) {
+                    let local_i = i
+                    var resultMatrixLine = Array<Int>(repeating: 0,
+                                                      count: matrixSize)
+                    for j in 0..<matrixSize {
+                        var value = 0
+                        for k in 0..<matrixSize {
+                            value += matrix1[local_i][k] * matrix2[k][j]
+                        }
+                        resultMatrixLine[j] = value
                     }
-                    //this is for fixing crash
-                    resultMatrixQueue.async(group: self.dispatchGroup,
-                                            qos: .userInteractive,
+                    resultMatrixQueue.async(group: dispatchGroup,
                                             flags: .barrier,
                                             execute: {
-                                                resultMatrix[local_i][j] = value
+                                                resultMatrix[local_i] = resultMatrixLine
                     })
                 }
             }

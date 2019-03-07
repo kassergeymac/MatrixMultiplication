@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var lblStartTime: UILabel!
     @IBOutlet weak var lblEndTime: UILabel!
     @IBOutlet weak var lblDurationSeconds: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
     override func viewDidLoad() {
@@ -29,8 +30,10 @@ class ViewController: UIViewController {
         dateFormatter.dateFormat = "HH:mm:ss"
         let startDate = Date()
         self.lblStartTime.text = dateFormatter.string(from: startDate)
+        self.activityIndicator.startAnimating()
         MatrixCalculator().multiplyMatrices(matrix1: matrix1,
                                             matrix2: matrix2) { [weak self]_ in
+                                                self?.activityIndicator.stopAnimating()
                                                 let endDate = Date()
                                                 self?.lblEndTime.text = dateFormatter.string(from: endDate)
                                                 self?.lblDurationSeconds.text = String(endDate.timeIntervalSince1970-startDate.timeIntervalSince1970)
@@ -45,8 +48,10 @@ class ViewController: UIViewController {
         dateFormatter.dateFormat = "HH:mm:ss"
         let startDate = Date()
         self.lblStartTime.text = dateFormatter.string(from: startDate)
+        self.activityIndicator.startAnimating()
         MatrixCalculator().parallelMultiplyMatrices(matrix1: matrix1,
                                                     matrix2: matrix2) { [weak self]_ in
+                                                        self?.activityIndicator.stopAnimating()
                                                         let endDate = Date()
                                                         self?.lblEndTime.text = dateFormatter.string(from: endDate)
                                                         self?.lblDurationSeconds.text = String(endDate.timeIntervalSince1970-startDate.timeIntervalSince1970)

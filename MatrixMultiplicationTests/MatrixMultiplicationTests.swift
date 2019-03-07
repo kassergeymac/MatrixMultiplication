@@ -10,7 +10,7 @@ import XCTest
 @testable import MatrixMultiplication
 
 class MatrixMultiplicationTests: XCTestCase {
-    let matrixSize = 150
+    let matrixSize = 200
     var matrix1:Matrix = Matrix()
     var matrix2:Matrix = Matrix()
     

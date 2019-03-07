@@ -40,6 +40,14 @@
                                     <action selector="onTouchUpMultiplicate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bUv-Eq-P3I"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wxJ-a8-Qge">
+                                <rect key="frame" x="16" y="58" width="133" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Multiplicate parallel"/>
+                                <connections>
+                                    <action selector="onTouchUpMultiplicateParallel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fsu-M1-S40"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Stated at:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0K-wg-t90">
                                 <rect key="frame" x="16" y="101" width="75" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -82,20 +90,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wxJ-a8-Qge">
-                                <rect key="frame" x="16" y="58" width="133" height="30"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Y7N-Ua-1ce">
+                                <rect key="frame" x="178" y="267" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Multiplicate parallel"/>
-                                <connections>
-                                    <action selector="onTouchUpMultiplicate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="odU-qV-q8m"/>
-                                    <action selector="onTouchUpMultiplicateParallel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fsu-M1-S40"/>
-                                </connections>
-                            </button>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="Y7N-Ua-1ce" id="tpF-NG-axm"/>
                         <outlet property="lblDurationSeconds" destination="iIV-mD-hrw" id="grH-FT-fIo"/>
                         <outlet property="lblEndTime" destination="1sY-TY-ASw" id="EgJ-rx-suY"/>
                         <outlet property="lblStartTime" destination="MK8-iG-Uzl" id="g5w-gt-b3P"/>
